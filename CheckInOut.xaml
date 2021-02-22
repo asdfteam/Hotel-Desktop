@@ -1,0 +1,17 @@
+﻿<Page x:Class="FrontDeskHotel.CheckInOut"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FrontDeskHotel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CheckInOut">
+
+    <Grid>
+        <Label Content="Check in/out" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="27" Width="123" FontFamily="Arial Black"/>
+        <Button x:Name="checkInBtn" Content="Check in" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="46" Width="132" Cursor="Hand" Background="White" FontFamily="Arial Black" Click="checkInBtn_Click"/>
+        <Button x:Name="checkOutBtn" Content="Check out" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="48" Width="132" Cursor="Hand" Background="White" FontFamily="Arial Black" Click="checkOutBtn_Click"/>
+
+    </Grid>
+</Page>
