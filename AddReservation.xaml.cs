@@ -64,12 +64,38 @@ namespace FrontDeskHotel
             }
         }
 
-        private void AddReservation_Loaded(object sender, RoutedEventArgs e)
+        async private void AddReservation_Loaded(object sender, RoutedEventArgs e)
         {
+            var response = await clientImpl.Get(FixedUri + "/reservations");
+            if (!response.IsSuccessStatusCode) throw new Exception(response.StatusCode.ToString());
+            var content = response.Content.ReadAsStringAsync().Result;
+            reservations = JsonConvert.DeserializeObject<List<Reservation>>(content);
 
-            Reservations loaded = new Reservations();
-            this.NavigationService.Navigate(loaded);
-            
+            Label header = new Label
+            {
+                Content = "Reservation List: \n",
+                FontFamily = new FontFamily("Arial Black"),
+                FontSize = 15
+            };
+            resPanel.Children.Add(header);
+            Label resList;
+            foreach (var res in reservations)
+            {
+                resList = new Label
+                {
+                    Content = string.Join(Environment.NewLine,
+                                "ReservationID: " + res.ReservationId.ToString() +
+                                "\nCustomer: " + res.Customer.CustomerName +
+                                "\nRoomNumber: " + res.Room.RoomNumber.ToString() +
+                                "\nFrom: " + res.StartDate.ToShortDateString() +
+                                "\nTo: " + res.EndDate.ToShortDateString()
+                                 ),
+                    FontFamily = new FontFamily("Arial Black"),
+                    FontSize = 12,
+                };
+
+                resPanel.Children.Add(resList);
+            }
         }
     }
 }
