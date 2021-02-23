@@ -7,9 +7,10 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddReservation">
+      Title="AddReservation"
+      Loaded="AddReservation_Loaded">
 
-    <Grid Margin="0,0,529,202">
+    <Grid Margin="0,0,10,0">
         <Label x:Name="Name" Content="Name: " HorizontalAlignment="Left" Margin="-3,48,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
         <Label x:Name="From" Content="From:" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
         <Label Content="To:" HorizontalAlignment="Left" Margin="17,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.522,0.509" FontFamily="Arial Black"/>
@@ -19,9 +20,13 @@
         <DatePicker x:Name="dp2" DisplayDateStart="{Binding ElementName=dp, Path=SelectedDate}" Focusable="False" HorizontalAlignment="Left" Margin="52,123,0,0" VerticalAlignment="Top" Height="24" Width="186"/>
 
         
-        <Canvas x:Name="mycanvas" Margin="10,202,7,10">
+        <Canvas x:Name="mycanvas" Margin="31,204,531,174">
 
         </Canvas>
-        
+
+        <StackPanel x:Name="resPanel" Margin="308,10,171,0">
+
+        </StackPanel>
+
     </Grid>
 </Page>

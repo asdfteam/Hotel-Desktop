@@ -10,7 +10,7 @@
       Loaded="Reservation_OnLoaded">
 
     <Grid>
-        <Label  Content ="Reservation" x:Name="label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
+        <Label  Content ="Reservation" x:Name="label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="15"/>
         <Button x:Name ="addResBtn" Content="Add new reservarion" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="addResBtn_Click"/>
         <Button x:Name="deleteResBtn" Content="Delete reservation" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="43" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="deleteResBtn_Click"/>
 

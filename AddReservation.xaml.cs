@@ -10,19 +10,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HotelLibrary;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace FrontDeskHotel
 {
-    /// <summary>
-    /// Interaction logic for AddReservation.xaml
-    /// </summary>
+    using HttpClientImpl;
+
     public partial class AddReservation : Page
     {
+
+        static readonly HttpClient client = new HttpClient();
+        static readonly HttpClientImpl clientImpl = new HttpClientImpl(client);
+
+        public string FixedUri = "http://localhost:5000";
+
+        public List<Reservation> reservations { get; set; }
+
         public AddReservation()
         {
             InitializeComponent();
 
-            
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -35,7 +44,7 @@ namespace FrontDeskHotel
             Label to = new Label();
             from.Content = time.Value.ToShortDateString() + " - ";
             Canvas.SetLeft(from, 0);
-            Canvas.SetLeft(to, 90 );
+            Canvas.SetLeft(to, 70);
             to.Content = time2.Value.ToShortDateString();
 
 
@@ -55,5 +64,12 @@ namespace FrontDeskHotel
             }
         }
 
+        private void AddReservation_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            Reservations loaded = new Reservations();
+            this.NavigationService.Navigate(loaded);
+            
+        }
     }
 }
