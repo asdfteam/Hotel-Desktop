@@ -10,27 +10,30 @@
       Title="AddReservation"
       Loaded="AddReservation_Loaded">
 
-    <Grid Margin="0,0,10,0">
-        <Label x:Name="Name" Content="Name: " HorizontalAlignment="Left" Margin="26,57,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
-        <Label x:Name="From" Content="From:" HorizontalAlignment="Left" Margin="30,156,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
-        <Label Content="To:" HorizontalAlignment="Left" Margin="47,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.522,0.509" FontFamily="Arial Black"/>
-        <Button x:Name="addButton" Content="Add Reservation" HorizontalAlignment="Left" Margin="115,257,0,0" VerticalAlignment="Top" Width="120" Cursor="Hand" FontFamily="Arial Black" Background="White" Height="23" Click="addButton_Click"/>
-        <TextBox x:Name="inputName" Text="{Binding nameInput}" HorizontalAlignment="Left" Margin="82,60,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <DatePicker x:Name="datepickerFrom" SelectedDate="{x:Static sys:DateTime.Now}" DisplayDateStart="{x:Static sys:DateTime.Now}" Focusable="False" HorizontalAlignment="Left" Margin="82,156,0,0" VerticalAlignment="Top" Height="24" Width="186"/>
-        <DatePicker x:Name="datepickerTo" DisplayDateStart="{Binding ElementName=datepickerFrom, Path=SelectedDate}" Focusable="False" HorizontalAlignment="Left" Margin="82,206,0,0" VerticalAlignment="Top" Height="24" Width="186"/>
-        <Label x:Name="roomtype" Content="Roomtype:" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" FontFamily="Arial Black"/>
-        <ComboBox x:Name="roomtypeCombo" HorizontalAlignment="Left" Margin="82,108,0,0" VerticalAlignment="Top" Width="186" SelectionChanged="RoomtypeCombo_SelectionChanged">
-            <ComboBoxItem IsSelected="True">Single Bed</ComboBoxItem>
-            <ComboBoxItem>Double Bed</ComboBoxItem>
-        </ComboBox>
+    <Grid>
 
-        <Canvas x:Name="mycanvas" Margin="70,285,492,93">
 
+        <Canvas Margin="0,10,466,144">
+            <Label x:Name="Name" Content="Name: " FontFamily="Arial Black" Canvas.Left="30" Canvas.Top="10"/>
+            <Label x:Name="roomtype" Content="Roomtype:" FontFamily="Arial Black" Canvas.Top="49"/>
+            <Label x:Name="From" Content="From:" FontFamily="Arial Black" Canvas.Left="30" Canvas.Top="96"/>
+            <Label x:Name="To" Content="To:" FontFamily="Arial Black" Canvas.Left="47" Canvas.Top="148"/>
+            <Button x:Name="addButton" Content="Add Reservation" Width="120" Cursor="Hand" FontFamily="Arial Black" Background="White" Height="23" Click="addButton_Click" Canvas.Left="127" Canvas.Top="201"/>
+            <TextBox x:Name="inputName" Text="{Binding nameInput, Mode=TwoWay}" TextWrapping="Wrap"  Width="186" Canvas.Left="94" Canvas.Top="13"/>
+            <DatePicker x:Name="datepickerFrom" SelectedDate="{x:Static sys:DateTime.Now}" DisplayDateStart="{x:Static sys:DateTime.Now}" Focusable="False"  Height="24" Width="186" Canvas.Left="94" Canvas.Top="96"/>
+            <DatePicker x:Name="datepickerTo" DisplayDateStart="{Binding ElementName=datepickerFrom, Path=SelectedDate}" Focusable="False" Height="24" Width="186" Canvas.Left="94" Canvas.Top="148"/>
+
+            <ComboBox x:Name="roomtypeCombo" Width="186" SelectionChanged="RoomtypeCombo_SelectionChanged" Canvas.Left="94" Canvas.Top="51">
+                <ComboBoxItem IsSelected="True">Single Bed</ComboBoxItem>
+                <ComboBoxItem>Double Bed</ComboBoxItem>
+            </ComboBox>
         </Canvas>
 
-        <StackPanel x:Name="resPanel" Margin="395,5,84,5">
+        <ScrollViewer Margin="324,0,0,0" VerticalScrollBarVisibility="Auto" >
+            <StackPanel x:Name="resPanel">
 
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
 
 
 

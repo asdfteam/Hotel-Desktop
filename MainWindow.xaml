@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="FrontDesk" Height="800" Width="1200">
     <Grid>
-        <Button x:Name="resBtn" Content="Reservation" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="46" Width="133" Click="resBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand"/>
-        <Button x:Name="roomBtn" Content="Rooms" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="45" Width="133" Click="roomBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand"/>
-        <Button x:Name="checkBtn" Content="Check In or Out" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Height="51" Width="133" Click="checkBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand"/>
-        <Frame x:Name="Main" Margin="148,6,10,5" NavigationUIVisibility="Hidden"/>
+        <Canvas>
+            <Button x:Name="resBtn" Content="Reservation" Height="46" Width="133" Click="resBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="29"/>
+            <Button x:Name="roomBtn" Content="Rooms"  Height="45" Width="133" Click="roomBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="100"/>
+            <Button x:Name="checkBtn" Content="Check In or Out"  Height="51" Width="133" Click="checkBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="169"/>
+        </Canvas>
 
+        <Frame x:Name="Main" Margin="148,6,10,5" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 

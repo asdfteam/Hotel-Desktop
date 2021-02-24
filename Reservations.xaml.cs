@@ -38,6 +38,7 @@ namespace FrontDeskHotel
         private void addResBtn_Click(object sender, RoutedEventArgs e)
         {
             resPanel.Children.Clear();
+            scrollviewer.Visibility = Visibility.Collapsed;
             resFrame.Content = null;
             resFrame.Content = new AddReservation();
         }
@@ -63,6 +64,8 @@ namespace FrontDeskHotel
                 FontSize = 15
             };
             resPanel.Children.Add(header);
+            
+            
             Label resList;
             foreach (var res in reservations)
             {
@@ -80,9 +83,10 @@ namespace FrontDeskHotel
                     FontFamily = new FontFamily("Arial Black"),
                     FontSize = 12,
                 };
-
+                
                 resPanel.Children.Add(resList);
             }
+            
 
         }
 

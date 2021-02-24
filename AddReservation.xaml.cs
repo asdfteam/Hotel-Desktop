@@ -26,13 +26,14 @@ namespace FrontDeskHotel
 
         public string FixedUri = "http://localhost:5000";
 
-        public string nameInput { get; }
+        public string nameInput { get; set; }
 
         public List<Reservation> reservations { get; set; }
 
         public AddReservation()
         {
             InitializeComponent();
+            this.DataContext = this;
 
         }
 
@@ -40,6 +41,7 @@ namespace FrontDeskHotel
         {
 
             var name = nameInput;
+            var roomtype = roomtypeCombo.SelectionBoxItem;
             DateTime? time = datepickerFrom.SelectedDate;
             DateTime? time2 = datepickerTo.SelectedDate;
 
@@ -47,12 +49,14 @@ namespace FrontDeskHotel
             {
                 MessageBox.Show("Invalid input! Try again!");
             }
-            else 
+            else
             {
 
-                ClearLabel();
-
-                MessageBoxResult msg = MessageBox.Show("Confirm reservation?", "Confirm", System.Windows.MessageBoxButton.OKCancel); 
+                MessageBoxResult msg = MessageBox.Show("Name: " + name+
+                                                        "\nRoomtype: " + roomtype +
+                                                        "\nFrom: " + time.Value.ToShortDateString().ToString() + 
+                                                        "\nTo: " + time2.Value.ToShortDateString().ToString() + 
+                                                        "\nConfirm reservation?", "Confirm Reservation", System.Windows.MessageBoxButton.OKCancel); 
                 {
                     if (msg == MessageBoxResult.Yes)
                     {
@@ -64,27 +68,9 @@ namespace FrontDeskHotel
                     }
                 }
 
-                Label from = new Label();
-                Label to = new Label();
-                from.Content = time.Value.ToShortDateString() + " - ";
-                Canvas.SetLeft(from, 0);
-                Canvas.SetLeft(to, 70);
-                to.Content = time2.Value.ToShortDateString();
-
-                mycanvas.Children.Add(from);
-                mycanvas.Children.Add(to);
             }
         }
 
-        private void ClearLabel()
-        {
-            for (int size = mycanvas.Children.Count - 1; size >= 0; size += -1)
-            {
-                UIElement elements = mycanvas.Children[size];
-                if (elements is Label)
-                    mycanvas.Children.Remove(elements);
-            }
-        }
 
         async private void AddReservation_Loaded(object sender, RoutedEventArgs e)
         {
@@ -99,7 +85,9 @@ namespace FrontDeskHotel
                 FontFamily = new FontFamily("Arial Black"),
                 FontSize = 15
             };
+
             resPanel.Children.Add(header);
+
             Label resList;
             foreach (var res in reservations)
             {

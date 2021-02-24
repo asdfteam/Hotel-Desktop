@@ -10,18 +10,19 @@
       Loaded="Reservation_OnLoaded">
 
     <Grid>
-        <Label  Content ="Reservation" x:Name="label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="15"/>
-        <Button x:Name ="addResBtn" Content="Add new reservarion" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="addResBtn_Click"/>
-        <Button x:Name="deleteResBtn" Content="Delete reservation" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="43" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="deleteResBtn_Click"/>
 
-      
-        <Frame  x:Name="resFrame" NavigationUIVisibility="Hidden" Margin="177,10,0,0" />
-        <StackPanel x:Name="resPanel" Margin="177,10,302,0">
-            
-        </StackPanel>
-        <StackPanel x:Name="roomPanel" Margin="511,10,0,0">
+        <Canvas Margin="0,0,626,249">
+            <Label  Content ="Reservation" x:Name="label" FontFamily="Arial Black" FontSize="15" Canvas.Left="10" Canvas.Top="10"/>
+            <Button x:Name ="addResBtn" Content="Add new reservarion"  Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="addResBtn_Click" Canvas.Left="10" Canvas.Top="54"/>
+            <Button x:Name="deleteResBtn" Content="Delete reservation"  Height="43" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="deleteResBtn_Click" Canvas.Left="10" Canvas.Top="119"/>
+        </Canvas>
+        
 
-        </StackPanel>
+        <ScrollViewer x:Name="scrollviewer"  Margin="191,0,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="resPanel" VerticalAlignment="Top">
 
+            </StackPanel>
+        </ScrollViewer>
+        <Frame  x:Name="resFrame" NavigationUIVisibility="Hidden" Margin="174,0,0,0" />
     </Grid>
 </Page>
