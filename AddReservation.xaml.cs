@@ -26,6 +26,8 @@ namespace FrontDeskHotel
 
         public string FixedUri = "http://localhost:5000";
 
+        public string nameInput { get; }
+
         public List<Reservation> reservations { get; set; }
 
         public AddReservation()
@@ -36,22 +38,42 @@ namespace FrontDeskHotel
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            ClearLabel();
-            DateTime? time = dp.SelectedDate;
-            DateTime? time2 = dp2.SelectedDate;
 
-            Label from = new Label();
-            Label to = new Label();
-            from.Content = time.Value.ToShortDateString() + " - ";
-            Canvas.SetLeft(from, 0);
-            Canvas.SetLeft(to, 70);
-            to.Content = time2.Value.ToShortDateString();
+            var name = nameInput;
+            DateTime? time = datepickerFrom.SelectedDate;
+            DateTime? time2 = datepickerTo.SelectedDate;
 
+            if (name == null || time == null || time2 == null)
+            {
+                MessageBox.Show("Invalid input! Try again!");
+            }
+            else 
+            {
 
-            mycanvas.Children.Add(from);
-            mycanvas.Children.Add(to);
+                ClearLabel();
 
-            MessageBox.Show("Reservation was added");
+                MessageBoxResult msg = MessageBox.Show("Confirm reservation?", "Confirm", System.Windows.MessageBoxButton.OKCancel); 
+                {
+                    if (msg == MessageBoxResult.Yes)
+                    {
+                        // add to database
+                    }
+                    else
+                    {
+                        // Nothing happens
+                    }
+                }
+
+                Label from = new Label();
+                Label to = new Label();
+                from.Content = time.Value.ToShortDateString() + " - ";
+                Canvas.SetLeft(from, 0);
+                Canvas.SetLeft(to, 70);
+                to.Content = time2.Value.ToShortDateString();
+
+                mycanvas.Children.Add(from);
+                mycanvas.Children.Add(to);
+            }
         }
 
         private void ClearLabel()
@@ -96,6 +118,11 @@ namespace FrontDeskHotel
 
                 resPanel.Children.Add(resList);
             }
+        }
+
+        private void RoomtypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

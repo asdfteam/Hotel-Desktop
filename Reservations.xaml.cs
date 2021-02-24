@@ -72,6 +72,8 @@ namespace FrontDeskHotel
                                 "ReservationID: " + res.ReservationId.ToString() +
                                 "\nCustomer: "  + res.Customer.CustomerName + 
                                 "\nRoomNumber: " + res.Room.RoomNumber.ToString() + 
+                                "\nSingle Beds: " + res.Room.SingleBed.ToString() +
+                                "\nDouble Beds: " + res.Room.DoubleBed.ToString() +
                                 "\nFrom: " + res.StartDate.ToShortDateString() + 
                                 "\nTo: " + res.EndDate.ToShortDateString()
                                  ),
