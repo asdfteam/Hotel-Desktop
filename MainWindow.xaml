@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontDeskHotel"
         mc:Ignorable="d"
-        Title="FrontDesk" Height="800" Width="1200">
+        Title="FrontDesk" Height="600" Width="1200">
     <Grid>
         <Canvas>
-            <Button x:Name="resBtn" Content="Reservation" Height="46" Width="133" Click="resBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="29"/>
-            <Button x:Name="roomBtn" Content="Rooms"  Height="45" Width="133" Click="roomBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="100"/>
-            <Button x:Name="checkBtn" Content="Check In or Out"  Height="51" Width="133" Click="checkBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="169"/>
+            <Button x:Name="resBtn" Content="Reservation" BorderThickness="2,2,2,2" Height="46" Width="133" Click="resBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="29" BorderBrush="Black"/>
+            <Button x:Name="roomBtn" Content="Rooms" BorderThickness="2,2,2,2" Height="45" Width="133" Click="roomBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="100" BorderBrush="Black"/>
+            <Button x:Name="checkBtn" Content="Check In or Out"  BorderThickness="2,2,2,2" Height="51" Width="133" Click="checkBtn_Click" Background="White" FontFamily="Arial Black" Cursor="Hand" Canvas.Left="10" Canvas.Top="169" BorderBrush="Black"/>
         </Canvas>
 
         <Frame x:Name="Main" Margin="148,6,10,5" NavigationUIVisibility="Hidden"/>

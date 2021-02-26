@@ -14,19 +14,33 @@
 
 
         <Canvas Margin="0,10,466,144">
-            <Label x:Name="Name" Content="Name: " FontFamily="Arial Black" Canvas.Left="30" Canvas.Top="10"/>
-            <Label x:Name="roomtype" Content="Roomtype:" FontFamily="Arial Black" Canvas.Top="49"/>
-            <Label x:Name="From" Content="From:" FontFamily="Arial Black" Canvas.Left="30" Canvas.Top="96"/>
-            <Label x:Name="To" Content="To:" FontFamily="Arial Black" Canvas.Left="47" Canvas.Top="148"/>
-            <Button x:Name="addButton" Content="Add Reservation" Width="120" Cursor="Hand" FontFamily="Arial Black" Background="White" Height="23" Click="addButton_Click" Canvas.Left="127" Canvas.Top="201"/>
-            <TextBox x:Name="inputName" Text="{Binding nameInput, Mode=TwoWay}" TextWrapping="Wrap"  Width="186" Canvas.Left="94" Canvas.Top="13"/>
-            <DatePicker x:Name="datepickerFrom" SelectedDate="{x:Static sys:DateTime.Now}" DisplayDateStart="{x:Static sys:DateTime.Now}" Focusable="False"  Height="24" Width="186" Canvas.Left="94" Canvas.Top="96"/>
-            <DatePicker x:Name="datepickerTo" DisplayDateStart="{Binding ElementName=datepickerFrom, Path=SelectedDate}" Focusable="False" Height="24" Width="186" Canvas.Left="94" Canvas.Top="148"/>
-
-            <ComboBox x:Name="roomtypeCombo" Width="186" SelectionChanged="RoomtypeCombo_SelectionChanged" Canvas.Left="94" Canvas.Top="51">
-                <ComboBoxItem IsSelected="True">Single Bed</ComboBoxItem>
-                <ComboBoxItem>Double Bed</ComboBoxItem>
-            </ComboBox>
+            <Label x:Name="Name" Content="Singlebed: " FontFamily="Arial Black" Canvas.Left="12" Canvas.Top="10"/>
+            <Label x:Name="roomtype" Content="Doublebed:" FontFamily="Arial Black" Canvas.Top="55" Canvas.Left="6"/>
+            <Label x:Name="From" Content="From:" FontFamily="Arial Black" Canvas.Left="38" Canvas.Top="96"/>
+            <Label x:Name="To" Content="To:" FontFamily="Arial Black" Canvas.Left="55" Canvas.Top="148"/>
+            <Button x:Name="addButton" Content="Add Reservation" BorderThickness="2,2,2,2" Width="120" Cursor="Hand" FontFamily="Arial Black" Background="White" Height="23" Click="addButton_Click" Canvas.Left="127" Canvas.Top="201" BorderBrush="Black"/>
+            <TextBox x:Name="inputSingle" Text="{Binding inputSinglebed, Mode=TwoWay}" TextWrapping="Wrap"  Width="186" Canvas.Left="94" Canvas.Top="13" Height="21" BorderBrush="Black"/>
+            <DatePicker x:Name="datepickerFrom" SelectedDate="{x:Static sys:DateTime.Now}" DisplayDateStart="{x:Static sys:DateTime.Now}" Focusable="False"  Height="24" Width="186" Canvas.Left="94" Canvas.Top="96">
+                <DatePicker.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                        <GradientStop Color="#FFA3AEB9"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </DatePicker.BorderBrush>
+            </DatePicker>
+            <DatePicker x:Name="datepickerTo" DisplayDateStart="{Binding ElementName=datepickerFrom, Path=SelectedDate}" SelectedDate="{x:Static sys:DateTime.Now}" Focusable="False" Height="24" Width="186" Canvas.Left="94" Canvas.Top="148">
+                <DatePicker.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                        <GradientStop Color="#FFA3AEB9"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </DatePicker.BorderBrush>
+            </DatePicker>
+            <TextBox x:Name="inputDouble" Text="{Binding inputDoublebed, Mode=TwoWay}" Canvas.Left="94" Canvas.Top="58" TextWrapping="Wrap" Width="186" FontFamily="Segoe UI" Height="21" BorderBrush="Black"/>
         </Canvas>
 
         <ScrollViewer Margin="324,0,0,0" VerticalScrollBarVisibility="Auto" >

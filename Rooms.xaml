@@ -10,10 +10,18 @@
       Loaded="Room_OnLoaded">
 
     <Grid>
-        <Label Content="Rooms " HorizontalAlignment="Left" Margin="11,10,0,0" VerticalAlignment="Top" Height="27" Width="65" Background="White" FontFamily="Arial Black" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-        <Canvas x:Name="myCanvas" Margin="81,10,0,0" Grid.RowSpan="3">
-            <Frame x:Name="roomsFrame" NavigationUIVisibility="Hidden" Margin="81,10,10,10"/>
+
+        <Canvas Margin="0,10,630,301">
+            <Label Content="Rooms " FontSize="15"  Height="27" Width="65" FontFamily="Arial Black" Canvas.Left="10"  />
+            <Button x:Name ="searchBtn" Content="Search"  BorderThickness="2,2,2,2" Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="SearchBtn_Click" Canvas.Left="10" Canvas.Top="44" BorderBrush="Black"/>
         </Canvas>
 
+        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" Margin="175,0,0,0">
+            <StackPanel x:Name="roomPanel" VerticalAlignment="Top">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Frame x:Name="roomsFrame" NavigationUIVisibility="Hidden" Margin="183,10,10,10"/>
     </Grid>
 </Page>

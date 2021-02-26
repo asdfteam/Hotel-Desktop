@@ -10,13 +10,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HotelLibrary;
 using Newtonsoft.Json;
 using System.Net.Http;
 
 namespace FrontDeskHotel
 {
     using HttpClientImpl;
+    using HotelLibrary;
 
     public partial class AddReservation : Page
     {
@@ -26,55 +26,66 @@ namespace FrontDeskHotel
 
         public string FixedUri = "http://localhost:5000";
 
-        public string nameInput { get; set; }
+        public int inputSinglebed { get; set; }
+        public int inputDoublebed { get; set; }
 
         public List<Reservation> reservations { get; set; }
+        private Customer _customer { get; }
 
-        public AddReservation()
+        
+        public AddReservation(Customer customer)
         {
+            
+            _customer = customer;
             InitializeComponent();
             this.DataContext = this;
+            
 
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        async private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            int singlebed = inputSinglebed;
+            var doublebed = inputDoublebed;
+            DateTime startDate = (DateTime)datepickerFrom.SelectedDate;
+            DateTime endDate = (DateTime) datepickerTo.SelectedDate;
 
-            var name = nameInput;
-            var roomtype = roomtypeCombo.SelectionBoxItem;
-            DateTime? time = datepickerFrom.SelectedDate;
-            DateTime? time2 = datepickerTo.SelectedDate;
-
-            if (name == null || time == null || time2 == null)
+            if (singlebed > 2 || singlebed == 0 || doublebed == 0 || doublebed > 2 || startDate == null || endDate == null || startDate == endDate || endDate.CompareTo(startDate) < 0)
             {
                 MessageBox.Show("Invalid input! Try again!");
             }
             else
             {
 
-                MessageBoxResult msg = MessageBox.Show("Name: " + name+
-                                                        "\nRoomtype: " + roomtype +
-                                                        "\nFrom: " + time.Value.ToShortDateString().ToString() + 
-                                                        "\nTo: " + time2.Value.ToShortDateString().ToString() + 
-                                                        "\nConfirm reservation?", "Confirm Reservation", System.Windows.MessageBoxButton.OKCancel); 
+                MessageBoxResult msg = MessageBox.Show("Singlebed: " + singlebed +
+                                                       "\nDoublebed: " + doublebed +
+                                                       "\nFrom: " + startDate.ToShortDateString().ToString() + 
+                                                       "\nTo: " + endDate.ToShortDateString().ToString() + 
+                                                       "\nConfirm reservation?", "Confirm Reservation", System.Windows.MessageBoxButton.OKCancel); 
                 {
-                    if (msg == MessageBoxResult.Yes)
+                    if (msg == MessageBoxResult.OK)
                     {
-                        // add to database
-                    }
-                    else
-                    {
-                        // Nothing happens
+                        ClearPanelChildren();
+                        var reservation = new CreateReservationRequest
+                        {
+                            StartDate = startDate,
+                            EndDate = endDate,
+                            DoubleBeds = doublebed,
+                            SingleBeds = singlebed
+                        };
+
+                        var response = await clientImpl.Post(FixedUri + "/reservations/" + $"{_customer.CustomerId}", JsonConvert.SerializeObject(reservation));
+                        AddReservation_Loaded(this, e);
                     }
                 }
 
             }
+            
         }
-
 
         async private void AddReservation_Loaded(object sender, RoutedEventArgs e)
         {
-            var response = await clientImpl.Get(FixedUri + "/reservations");
+            var response = await clientImpl.Get(FixedUri + "/reservations/" + $"{_customer.CustomerId}");
             if (!response.IsSuccessStatusCode) throw new Exception(response.StatusCode.ToString());
             var content = response.Content.ReadAsStringAsync().Result;
             reservations = JsonConvert.DeserializeObject<List<Reservation>>(content);
@@ -89,27 +100,75 @@ namespace FrontDeskHotel
             resPanel.Children.Add(header);
 
             Label resList;
+            Button delBtn;
             foreach (var res in reservations)
             {
+
                 resList = new Label
                 {
                     Content = string.Join(Environment.NewLine,
                                 "ReservationID: " + res.ReservationId.ToString() +
                                 "\nCustomer: " + res.Customer.CustomerName +
-                                "\nRoomNumber: " + res.Room.RoomNumber.ToString() +
+                                "\nRoom Number: " + res.Room.RoomNumber.ToString() +
+                                "\nSingle Beds: " + res.Room.SingleBed.ToString() +
+                                "\nDouble Beds: " + res.Room.DoubleBed.ToString() +
                                 "\nFrom: " + res.StartDate.ToShortDateString() +
                                 "\nTo: " + res.EndDate.ToShortDateString()
                                  ),
                     FontFamily = new FontFamily("Arial Black"),
                     FontSize = 12,
+                    BorderThickness = new Thickness(1, 1, 1, 1),
+                    BorderBrush = Brushes.Black,
+                    Background = Brushes.LightGray,
+                    MaxWidth = 200,
+                    Width = 200,
+                    HorizontalAlignment = HorizontalAlignment.Left,    
                 };
 
+                delBtn = new Button
+                {
+                    Content = "Delete ID " + res.ReservationId.ToString(),
+                    FontFamily = new FontFamily("Arial Black"),
+                    FontSize = 12,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    BorderThickness = new Thickness(2, 2, 2, 2),
+                    BorderBrush = Brushes.Black,
+                    Width = 200,
+                    Height = 23,
+                    Background = Brushes.White,
+                    Cursor = Cursors.Hand
+                };
+
+                
+                delBtn.Click += async (sender, e) =>
+                {
+                    ClearPanelChildren();
+                    MessageBoxResult msg = MessageBox.Show("Delete reservation " + res.ReservationId + "?", "Delete Reservation", System.Windows.MessageBoxButton.OKCancel); 
+                    if (msg == MessageBoxResult.OK)
+                    {
+                        var responseDelete = await clientImpl.Delete(FixedUri + "/reservations/" + $"{res.ReservationId}");
+                    }
+
+                    AddReservation_Loaded(this, e);
+                };
+
+                Label space = new Label();
                 resPanel.Children.Add(resList);
+                resPanel.Children.Add(delBtn);
+                resPanel.Children.Add(space);
             }
         }
 
-        private void RoomtypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ClearPanelChildren()
         {
+            for (int size = resPanel.Children.Count - 1; size >= 0; size += -1)
+            {
+                UIElement elements = resPanel.Children[size];
+                if (elements is Label || elements is Button)
+                    resPanel.Children.Remove(elements);
+
+                
+            }
 
         }
     }

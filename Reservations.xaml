@@ -13,8 +13,7 @@
 
         <Canvas Margin="0,0,626,249">
             <Label  Content ="Reservation" x:Name="label" FontFamily="Arial Black" FontSize="15" Canvas.Left="10" Canvas.Top="10"/>
-            <Button x:Name ="addResBtn" Content="Add new reservarion"  Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="addResBtn_Click" Canvas.Left="10" Canvas.Top="54"/>
-            <Button x:Name="deleteResBtn" Content="Delete reservation"  Height="43" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="deleteResBtn_Click" Canvas.Left="10" Canvas.Top="119"/>
+            <Button x:Name ="searchBtn" Content="Search"  BorderThickness="2,2,2,2" Height="42" Width="147" FontFamily="Arial Black" Background="White" Cursor="Hand" Click="SearchBtn_Click" Canvas.Left="10" Canvas.Top="54" BorderBrush="Black"/>
         </Canvas>
         
 
@@ -23,6 +22,7 @@
 
             </StackPanel>
         </ScrollViewer>
+        
         <Frame  x:Name="resFrame" NavigationUIVisibility="Hidden" Margin="174,0,0,0" />
     </Grid>
 </Page>

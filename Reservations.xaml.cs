@@ -35,20 +35,15 @@ namespace FrontDeskHotel
             InitializeComponent();
         }
 
-        private void addResBtn_Click(object sender, RoutedEventArgs e)
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             resPanel.Children.Clear();
             scrollviewer.Visibility = Visibility.Collapsed;
             resFrame.Content = null;
-            resFrame.Content = new AddReservation();
+            resFrame.Content = new SearchCustomer();
         }
 
-        private void deleteResBtn_Click(object sender, RoutedEventArgs e)
-        {
-            resPanel.Children.Clear();
-            resFrame.Content = null;
-            resFrame.Content = new DeleteReservation();
-        }
+       
 
         async private void Reservation_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -74,7 +69,7 @@ namespace FrontDeskHotel
                     Content = string.Join(Environment.NewLine,
                                 "ReservationID: " + res.ReservationId.ToString() +
                                 "\nCustomer: "  + res.Customer.CustomerName + 
-                                "\nRoomNumber: " + res.Room.RoomNumber.ToString() + 
+                                "\nRoom Number: " + res.Room.RoomNumber.ToString() + 
                                 "\nSingle Beds: " + res.Room.SingleBed.ToString() +
                                 "\nDouble Beds: " + res.Room.DoubleBed.ToString() +
                                 "\nFrom: " + res.StartDate.ToShortDateString() + 
@@ -82,8 +77,17 @@ namespace FrontDeskHotel
                                  ),
                     FontFamily = new FontFamily("Arial Black"),
                     FontSize = 12,
+                    BorderThickness = new Thickness(1,1,1,1),
+                    BorderBrush = Brushes.Black,
+                    Background = Brushes.LightGray,
+                    MaxWidth = 200,
+                    Width = 200,
+                    HorizontalAlignment = HorizontalAlignment.Left
+
                 };
-                
+                Label space = new Label();
+
+                resPanel.Children.Add(space);
                 resPanel.Children.Add(resList);
             }
             
