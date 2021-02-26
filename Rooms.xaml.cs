@@ -66,7 +66,7 @@ namespace FrontDeskHotel
                 changeStatus = new ComboBox
                 {
 
-                    ItemsSource = new List<string> {"AVAILABLE", "CLEANING", "MAINTENANCE", "SERVICE", "BUSY" },
+                    ItemsSource = new List<string> {"CLEANING", "MAINTENANCE", "SERVICE"},
                     FontFamily = new FontFamily("Arial Black"),
                     FontSize = 12,
                     Width = 350,
@@ -77,13 +77,14 @@ namespace FrontDeskHotel
 
                 changeStatus.SelectionChanged += async (sender, e) =>
                 {
-                    ClearPanelChildren();
+                    
                     if (sender is ComboBox dropdown) StatusContainer = dropdown.SelectedItem as string;
                     MessageBoxResult msg = MessageBox.Show("Change status to " + StatusContainer + " on room " + room.RoomNumber + "?", "Change Status", System.Windows.MessageBoxButton.OKCancel);
 
                     if (msg == MessageBoxResult.OK)
                     {
-                       var response = await clientImpl.Put(FixedUri + "/rooms/" + $"{room.RoomNumber}?newStatus={StatusContainer}");
+                        ClearPanelChildren();
+                        var response = await clientImpl.Put(FixedUri + "/rooms/" + $"{room.RoomNumber}?newStatus={StatusContainer}");
                     }
                     Room_OnLoaded(this, e);
                 };

@@ -13,8 +13,8 @@
             <Label Content="Check in/out" FontSize="15" Height="27" Width="123" FontFamily="Arial Black" Canvas.Left="10" Canvas.Top="10"/>
             <Button x:Name="checkInBtn" Content="Check in" BorderThickness="2,2,2,2" Height="46" Width="132" Cursor="Hand" Background="White" FontFamily="Arial Black" Click="checkInBtn_Click" Canvas.Left="10" Canvas.Top="50" BorderBrush="Black"/>
             <Button x:Name="checkOutBtn" Content="Check out" BorderThickness="2,2,2,2" Height="48" Width="132" Cursor="Hand" Background="White" FontFamily="Arial Black" Click="checkOutBtn_Click" Canvas.Left="10" Canvas.Top="117" BorderBrush="Black"/>
-
         </Canvas>
 
+        <Frame x:Name="checkFrame" NavigationUIVisibility="Hidden" Margin="156,0,0,0"/> 
     </Grid>
 </Page>

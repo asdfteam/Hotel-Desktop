@@ -23,12 +23,12 @@ namespace FrontDeskHotel
 
         private void checkOutBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void checkInBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            checkFrame.Content = new CheckIn();
         }
     }
 }

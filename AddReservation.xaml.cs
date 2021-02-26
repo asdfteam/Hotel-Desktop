@@ -50,7 +50,7 @@ namespace FrontDeskHotel
             DateTime startDate = (DateTime)datepickerFrom.SelectedDate;
             DateTime endDate = (DateTime) datepickerTo.SelectedDate;
 
-            if (singlebed > 2 || singlebed == 0 || doublebed == 0 || doublebed > 2 || startDate == null || endDate == null || startDate == endDate || endDate.CompareTo(startDate) < 0)
+            if (singlebed > 2 || singlebed < 0 || doublebed < 0 || doublebed > 2 || startDate == null || endDate == null || startDate == endDate || endDate.CompareTo(startDate) < 0)
             {
                 MessageBox.Show("Invalid input! Try again!");
             }
@@ -142,14 +142,16 @@ namespace FrontDeskHotel
                 
                 delBtn.Click += async (sender, e) =>
                 {
-                    ClearPanelChildren();
+                    
                     MessageBoxResult msg = MessageBox.Show("Delete reservation " + res.ReservationId + "?", "Delete Reservation", System.Windows.MessageBoxButton.OKCancel); 
                     if (msg == MessageBoxResult.OK)
                     {
+                        ClearPanelChildren();
                         var responseDelete = await clientImpl.Delete(FixedUri + "/reservations/" + $"{res.ReservationId}");
+                        AddReservation_Loaded(this, e);
                     }
 
-                    AddReservation_Loaded(this, e);
+                    
                 };
 
                 Label space = new Label();

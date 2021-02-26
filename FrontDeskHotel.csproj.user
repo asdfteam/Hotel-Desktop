@@ -10,10 +10,10 @@
     <Compile Update="AddReservation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CheckInOut.xaml.cs">
+    <Compile Update="CheckIn.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="DeleteReservation.xaml.cs">
+    <Compile Update="CheckInOut.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Reservations.xaml.cs">
@@ -22,15 +22,18 @@
     <Compile Update="Rooms.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SearchCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddReservation.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CheckInOut.xaml">
+    <Page Update="CheckIn.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="DeleteReservation.xaml">
+    <Page Update="CheckInOut.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Rooms.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SearchCustomer.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
