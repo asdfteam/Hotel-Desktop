@@ -16,6 +16,9 @@
     <Compile Update="CheckInOut.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CheckOut.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Reservations.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CheckInOut.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CheckOut.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

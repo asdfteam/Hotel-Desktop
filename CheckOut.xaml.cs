@@ -10,17 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HotelLibrary;
 using System.Net.Http;
+using HotelLibrary;
 using Newtonsoft.Json;
 
 namespace FrontDeskHotel
 {
     using HttpClientImpl;
-    
-
-
-    public partial class CheckIn : Page
+   
+    public partial class CheckOut : Page
     {
 
         static readonly HttpClient client = new HttpClient();
@@ -29,26 +27,21 @@ namespace FrontDeskHotel
         public string FixedUri = "http://localhost:5000";
 
         public string InputName { get; set; }
-
-
-        public CheckIn()
+        public CheckOut()
         {
             InitializeComponent();
             this.DataContext = this;
         }
 
-        async private void CheckInBtn_Click(object sender, RoutedEventArgs e)
+       async private void CheckOutBtn_Click(object sender, RoutedEventArgs e)
         {
+            var response = await clientImpl.Put(FixedUri + "/rooms/checkout?customerName=" + $"{InputName}");
 
-            var response = await clientImpl.Put(FixedUri + "/rooms/checkin?customerName=" + $"{InputName}");
             if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("Welcome! =)");
+                MessageBox.Show("Thank you for visiting Hotel Hight!\n");
             }
-            else
-            {
-                MessageBox.Show("You don't have a reservation for today!\nPlease come back later.");
-            }
+            
         }
     }
 }

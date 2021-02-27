@@ -72,6 +72,7 @@ namespace FrontDeskHotel
                     Width = 350,
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Background = Brushes.White,
+                    SelectedItem = room.RoomStatus
                     
                 };
 
@@ -85,8 +86,9 @@ namespace FrontDeskHotel
                     {
                         ClearPanelChildren();
                         var response = await clientImpl.Put(FixedUri + "/rooms/" + $"{room.RoomNumber}?newStatus={StatusContainer}");
+                        Room_OnLoaded(this, e);
                     }
-                    Room_OnLoaded(this, e);
+                    
                 };
 
                 Label space = new Label();
