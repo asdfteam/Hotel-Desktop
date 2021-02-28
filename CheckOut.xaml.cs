@@ -37,11 +37,15 @@ namespace FrontDeskHotel
         {
             var response = await clientImpl.Put(FixedUri + "/rooms/checkout?customerName=" + $"{InputName}");
 
+
             if (response.IsSuccessStatusCode)
             {
                 MessageBox.Show("Thank you for visiting Hotel Hight!\n");
             }
-            
+            else
+            {
+                MessageBox.Show("The customer did not have a reservation that ended today."); 
+            }
         }
     }
 }
