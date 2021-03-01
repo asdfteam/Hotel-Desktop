@@ -80,8 +80,8 @@ namespace FrontDeskHotel
                     BorderThickness = new Thickness(1,1,1,1),
                     BorderBrush = Brushes.Black,
                     Background = Brushes.LightGray,
-                    MaxWidth = 200,
-                    Width = 200,
+                    MaxWidth = 300,
+                    Width = 300,
                     HorizontalAlignment = HorizontalAlignment.Left
 
                 };
